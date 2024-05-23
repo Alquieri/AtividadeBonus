@@ -45,7 +45,53 @@ public class GerenciarObras {
         
             
         }
-}
+        public static Obras buscarJogo(String titulo) throws Exception {
+
+            ArrayList<Obras> ListaObra = listarObras();
+    
+            for (Obras temp : ListaObra) {
+    
+                if(temp.getTitulo() == titulo) {
+    
+                    return temp;
+                }
+            }
+    
+            throw new Exception("\nObras com o titulo " + titulo + " não localizado!");
+    
+        }
+    
+        public static void apagarObra(String titulo) throws Exception{
+    
+            ArrayList<Obras> ListaObra = listarObras();       
+        
+            boolean encontrou = false;
+            for (Obras temp : ListaObra) {
+    
+                if(temp.getTitulo() == titulo) {
+                    ListaObra.remove(temp);
+                    encontrou = true;
+                    break;
+                }
+            }
+    
+            if (!encontrou) {
+                throw new Exception("\nObra com o titulo " + titulo + " não localizado!");
+            }
+    
+           
+            try (FileWriter fw = new FileWriter(ARQUIVO);
+            BufferedWriter bw = new BufferedWriter(fw)) {
+    
+                for (Obras j : ListaObra) {
+    
+                    bw.write(j + "\n");
+                }
+            }
+        }
+    
+    }
+
 
 
 

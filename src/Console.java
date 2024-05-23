@@ -13,18 +13,17 @@ public class Console {
                 System.out.println(msg);
                 valor = scanner.nextInt();
                 
-                break; // quebra o loop se o valor foi lido
+                break; 
             
             } catch (InputMismatchException e) {
-                // senão, a exceção é capturada:
+               
                 System.out.println("O valor informado não é um inteiro. Digite novamente: ");
             
-            } finally { // SEMPRE será executado
+            } finally { 
 
-                scanner.nextLine(); // limpa o buffer
+                scanner.nextLine();
             }
         }
-        // retorna o valor lido:
         return valor;
     }
 
